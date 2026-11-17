@@ -1,0 +1,27 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# --- Virtual environment (rebuilt from uv.lock with `uv sync`) ---
+.venv/
+
+# --- Tool caches ---
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# --- Editor / OS ---
+.vscode/
+.idea/
+.DS_Store
+
+# --- MuJoCo writes warnings to this file in the working directory ---
+MUJOCO_LOG.TXT
+
+# --- Experiment outputs: raw training runs stay local; curated results go to results/ ---
+runs/
+wandb/
+*.zip
