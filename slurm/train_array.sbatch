@@ -22,6 +22,7 @@ SEED=${SEEDS[$((SLURM_ARRAY_TASK_ID % ${#SEEDS[@]}))]}
 # Use exactly the CPUs Slurm gave us.
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 export MKL_NUM_THREADS=$SLURM_CPUS_PER_TASK
+export PYTHONUNBUFFERED=1
 
 echo "task $SLURM_ARRAY_TASK_ID on $(hostname) at $(date): $CONFIG seed $SEED"
 # The environment was created beforehand with `uv sync`; call its Python directly so the job
