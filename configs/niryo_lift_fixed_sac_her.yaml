@@ -1,0 +1,26 @@
+# Hyperparameters from rl-baselines3-zoo (hyperparams/sac.yml, niryo_lift_fixed).
+experiment: niryo_lift_fixed_sac_her
+
+env:
+  id: NiryoLiftFixed-v0
+  kwargs: {}
+
+algo:
+  name: SAC
+  her: true
+  her_kwargs:
+    n_sampled_goal: 4
+    goal_selection_strategy: future
+  kwargs:
+    learning_rate: 0.001
+    batch_size: 256
+    gamma: 0.95
+    learning_starts: 1000
+    policy_kwargs:
+      net_arch: [256, 256]
+
+train:
+  total_timesteps: 300000
+  eval_every: 10000
+  eval_episodes: 20
+

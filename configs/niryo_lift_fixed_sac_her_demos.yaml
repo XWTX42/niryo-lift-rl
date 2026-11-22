@@ -1,0 +1,30 @@
+# E1b: same as E1 (SAC + HER, sparse reward on NiryoLiftFixed-v0), plus scripted demonstrations
+# pre-filled into the replay buffer. The ONLY difference from E1 is the `demos` block.
+experiment: niryo_lift_fixed_sac_her_demos
+
+env:
+  id: NiryoLiftFixed-v0
+  kwargs: {}
+
+demos:
+  path: data/demos_100.npz     # generate with: uv run python scripts/generate_demos.py --episodes 100
+
+algo:
+  name: SAC
+  her: true
+  her_kwargs:
+    n_sampled_goal: 4
+    goal_selection_strategy: future
+  kwargs:
+    learning_rate: 0.001
+    batch_size: 256
+    gamma: 0.95
+    learning_starts: 1000
+    policy_kwargs:
+      net_arch: [256, 256]
+
+train:
+  total_timesteps: 300000
+  eval_every: 10000
+  eval_episodes: 20
+  eval_seed_offset: 10000

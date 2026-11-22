@@ -1,0 +1,27 @@
+# Smoke test / positive control for the training pipeline.
+# Hyperparameters from rl-baselines3-zoo (hyperparams/sac.yml, FetchReach).
+experiment: fetch_reach_sac_her
+
+env:
+  id: FetchReach-v4
+  kwargs: {}
+
+algo:
+  name: SAC
+  her: true
+  her_kwargs:
+    n_sampled_goal: 4
+    goal_selection_strategy: future
+  kwargs:
+    learning_rate: 0.001
+    batch_size: 256
+    gamma: 0.95
+    learning_starts: 1000
+    policy_kwargs:
+      net_arch: [64, 64]
+
+train:
+  total_timesteps: 20000
+  eval_every: 1000
+  eval_episodes: 20
+  eval_seed_offset: 10000
